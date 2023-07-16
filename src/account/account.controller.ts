@@ -86,6 +86,9 @@ export class AccountController {
     );
   }
 
+  @ApiOperation({
+    summary: 'Delete account',
+  })
   @Delete('/:accountAddress')
   @UsePipes(ValidationPipe)
   deleteAccount(@Param('accountAddress') accountAddress: string): Promise<any> {

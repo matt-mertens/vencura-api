@@ -1,5 +1,4 @@
-import { Inject, Injectable, Scope } from '@nestjs/common';
-import { REQUEST } from '@nestjs/core';
+import { Injectable, Scope } from '@nestjs/common';
 import { ethers } from 'ethers';
 import { Account } from './account.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,7 +7,6 @@ import { Repository } from 'typeorm';
 @Injectable({ scope: Scope.REQUEST })
 export class AccountService {
   constructor(
-    @Inject(REQUEST) private request: any,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
@@ -85,7 +83,6 @@ export class AccountService {
         to: toAddress,
         value: ethers.parseEther(amount),
       });
-      console.log(tx)
 
       return { transactionHash: tx.hash };
     }
